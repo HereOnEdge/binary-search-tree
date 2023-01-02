@@ -1,7 +1,7 @@
 export const node = function(nodeData, lChild, rChild) {
     const data = nodeData;
-    const leftChild = lChild;
-    const rightChild = rChild;
+    const left = lChild;
+    const right = rChild;
 
-    return {data, leftChild, rightChild}
+    return {data, left, right}
 };

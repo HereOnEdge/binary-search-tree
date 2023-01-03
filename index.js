@@ -1,9 +1,23 @@
 import { prettyPrint } from "./print.js";
 import { tree } from "./tree.js";
 
-const arr = [34,20,52,12,3,4,2,54,2,123,12,26, 59]
+
+
+
+// write a function that generates an array of random numbers
+const arrBuilder = function() {
+    const length = Math.floor((Math.random() + 1) * 50);
+    const arr = []
+    for(let i = 0 ; i < length; i++) {
+        const value = Math.floor(Math.random() * 250)
+        arr.push(value)
+    }
+    return arr
+}
+
+const arr = arrBuilder()
 // const arr = [20,12,34,323]
 const defualtTree = tree(arr)
 
 prettyPrint(defualtTree.root)
-defualtTree.remove(4)
+defualtTree.remove(defualtTree.root.data)

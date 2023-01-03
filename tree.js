@@ -9,6 +9,9 @@ export const tree = function(arr) {
     }
     const remove = function(val) {
         const data = find.call(this, val)
+        if (data === null) {
+            return console.log('value not in the tree')
+        }
         const node = data.node
         const parent = data.parent
         const replaceData = nextBigNode(node)

@@ -1,7 +1,8 @@
 import { prettyPrint } from "./print.js";
 import { tree } from "./tree.js";
 
-const arr = [20,34,52,12,34,3,56,4,2,54,2,123,12,34,56,26]
+const arr = [34,20,52,12,3,4,2,54,2,123,12,26, 59]
 const defualtTree = tree(arr)
 
 prettyPrint(defualtTree.root)
+defualtTree.remove(4)

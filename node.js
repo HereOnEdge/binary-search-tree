@@ -11,7 +11,7 @@ export const nextBigNode = function(node) {
         return node.left === null ? null : node.left;
     } else {
         const rightNode = node.right
-        const infiniteLeft = (n = rightNode, parent = node) => n.left === null ? {n, parent} : infiniteLeft(n.left, n)
+        const infiniteLeft = (n = rightNode, parent = node) => n.left === null ? {node: n, parent} : infiniteLeft(n.left, n)
         return infiniteLeft()
     }
 }

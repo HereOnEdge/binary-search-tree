@@ -8,7 +8,7 @@ export const node = function(nodeData, lChild, rChild) {
 
 export const nextBigNode = function(node) {
     if(node.right === null) {
-        return node.left === null ? null : node.left;
+        return node.left === null ? null : {node : node.left, parent : node};
     } else {
         const rightNode = node.right
         const infiniteLeft = (n = rightNode, parent = node) => n.left === null ? {node: n, parent} : infiniteLeft(n.left, n)

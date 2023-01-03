@@ -11,21 +11,24 @@ export const tree = function(arr) {
         const data = find.call(this, val)
         const node = data.node
         const parent = data.parent
-        const replace = nextBigNode(node)
-        parent === 'root' ? this.root = replace :
-        parent.data < node.data ? parent.right = replace :
-        parent.data > node.data ? parent.left = replace : console.log('the fuck');
-        if(replace === null){
-            prettyPrint(this.root)
-            return
+        const replaceData = nextBigNode(node)
+        let replaceNode
+        let replaceParent
+        replaceData === null ? replaceNode = null : replaceNode = replaceData.node
+        parent === 'root' ? this.root = replaceNode :
+        node.data > parent.data ? parent.right = replaceNode :
+        node.data < parent.data ? parent.left = replaceNode : console.log('the fuck') 
+        if( replaceNode === null) {
+            return prettyPrint(this.root)
+        } else {
+            replaceParent = replaceData.parent
+            replaceParent.data > replaceNode.data ? replaceParent.left = null : replaceParent.right = null;
         }
-        if(node.left !== null && node.left !== replace) {
-            replace.left = node.left
-            node.right.left === replace ? node.right.left = null : console.log('something wrong')
-        }  else {
-            replace.left = null;
-        }
-        node.right !== null && node.right !== replace ? replace.right = node.right : replace.right = null;
+        
+        
+        
+        node.left !== null && node.left !== replaceNode ? replaceNode.left = node.left : replaceNode.left = null;
+        node.right !== null && node.right !== replaceNode ? replaceNode.right = node.right : replaceNode.right = null;
          
         prettyPrint(this.root)
     }

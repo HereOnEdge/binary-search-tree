@@ -4,9 +4,26 @@ import { prettyPrint } from "./print.js";
 
 export const tree = function(arr) {
     const root = buildTree(arr)
-    const insert = function(val) {
 
+    // build a function that inserts a given value to the tree if its not already in it
+    const insert = function(val) {
+        const data = find.call(this, val)
+        if (data === null) {
+            const crawl = function(currentNode = this.root, value = val) {
+                if (currentNode.data < value) {
+                    currentNode.right === null ? currentNode.right = node(value, null, null) : crawl(currentNode.right, value)
+                } else if (currentNode.data > value) {
+                    currentNode.left === null ? currentNode.left = node(value, null, null) : crawl(currentNode.left, value)
+                }
+            }
+            crawl.call(this)
+            prettyPrint(this.root)
+        } else {
+            console.log('value already inside tree')
+        }
     }
+
+    // build a function that removes a given value from the tree if its found
     const remove = function(val) {
         const data = find.call(this, val)
         if (data === null) {

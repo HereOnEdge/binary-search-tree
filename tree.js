@@ -33,6 +33,9 @@ export const tree = function(arr) {
     }
 
     const find = function(value, node = this.root, parent = 'root'){
+        if( node === null) {
+            return null;
+        }
         return value === node.data ? {node, parent} :
                 value > node.data ? find(value, node.right, node) :
                 value < node.data ? find(value, node.left, node) : null

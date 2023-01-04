@@ -49,6 +49,7 @@ export const tree = function(arr) {
         prettyPrint(this.root)
     }
 
+    // find function gets a value as parameter and returns the node and its parent, if the value is found
     const find = function(value, node = this.root, parent = 'root'){
         if( node === null) {
             return null;
@@ -57,7 +58,23 @@ export const tree = function(arr) {
                 value > node.data ? find(value, node.right, node) :
                 value < node.data ? find(value, node.left, node) : null
     }
-    return {root, insert, remove, find}
+
+    // levelOrder function reads every node in level order traversal and returns an array of values
+    const levelOrder = function(node = this.root, result = [], queue = []) {
+        result.push(node.data)
+        if(node.left !== null) {
+            queue.push(node.left)
+        }
+        if(node.right !== null ) {
+            queue.push(node.right)
+        }
+        if(queue.length === 0) {
+            return result
+        }
+        const firstInLine = queue.shift()
+        return levelOrder(firstInLine, result, queue)  
+    }
+    return {root, insert, remove, find, levelOrder}
 }
 
 // build a function that gets an array and create a balanced binary search tree and returns the root of the tree

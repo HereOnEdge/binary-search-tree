@@ -88,7 +88,20 @@ export const tree = function(arr) {
         } 
         return result
     }
-    return {root, insert, remove, find, levelOrder, inOrder}
+
+    // preOrder function, read the tree in (node, leftSubTree, rightSubTree) order
+    const preOrder = function(node = this.root, result = []) {
+        result.push(node.data)
+        if(node.left !== null) {
+            preOrder(node.left, result)
+        }
+        if(node.right !== null) {
+            preOrder(node.right, result)
+        }
+        return result
+    }
+    
+    return {root, insert, remove, find, levelOrder, inOrder, preOrder}
 }
 
 // build a function that gets an array and create a balanced binary search tree and returns the root of the tree

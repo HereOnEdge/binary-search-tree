@@ -22,3 +22,4 @@ defualtTree.insert(1)       // inserts 1 to the tree and log the tree to the con
 console.log(defualtTree.find(1).node)  // { data: 1, left: null, right: null }
 console.log(defualtTree.levelOrder())
 console.log(defualtTree.inOrder())
+console.log(defualtTree.preOrder())

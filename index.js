@@ -21,3 +21,4 @@ defualtTree.remove(2)       // removes 2 from the tree if its found and logs the
 defualtTree.insert(1)       // inserts 1 to the tree and log the tree to the console
 console.log(defualtTree.find(1).node)  // { data: 1, left: null, right: null }
 console.log(defualtTree.levelOrder())
+console.log(defualtTree.inOrder())

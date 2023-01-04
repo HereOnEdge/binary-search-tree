@@ -74,7 +74,21 @@ export const tree = function(arr) {
         const firstInLine = queue.shift()
         return levelOrder(firstInLine, result, queue)  
     }
-    return {root, insert, remove, find, levelOrder}
+
+    // inOrder function, reads the tree in (left SubTree, node, right subTree) order. returns a sorted array from low to high
+    const inOrder = function(node = this.root, result = [], queue = []) {
+        if(node.left !== null) {
+            inOrder(node.left, result) 
+            result.push(node.data)   
+        } else {
+            result.push(node.data)
+        } 
+        if (node.right !== null) {
+            inOrder(node.right, result)
+        } 
+        return result
+    }
+    return {root, insert, remove, find, levelOrder, inOrder}
 }
 
 // build a function that gets an array and create a balanced binary search tree and returns the root of the tree

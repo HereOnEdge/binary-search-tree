@@ -27,4 +27,5 @@ console.log(defualtTree.preOrder())
 console.log(defualtTree.postOrder())
 console.log(defualtTree.height(defualtTree.root))
 console.log(defualtTree.depth(defualtTree.root.left.left))
-
+defualtTree.remove(10)
+console.log(defualtTree.isBalanced())

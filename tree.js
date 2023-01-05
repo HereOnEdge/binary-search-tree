@@ -98,8 +98,8 @@ export const tree = function(arr) {
                 continue
             }
         }
-        if(isAvailable === false) {
-            iArray.push(i)
+        if(isAvailable === false && node.left === null && node.right === null) {
+                iArray.push(i)
         }
         node.iArray = iArray
         return result
@@ -149,10 +149,12 @@ export const tree = function(arr) {
             valueNode.data < currentNode.data ? depth(valueNode, currentNode.left, i) : 'node not found'
         }
     }
-    
-    return {root, insert, remove, find, levelOrder, inOrder, preOrder, postOrder, height, depth}
+
+    // isBalanced function, returns true if tree is balanced, else it returns false
+    const isBalanced = function() {
+        inOrder(this.root)
+        const iArray = mergeSort(this.root.iArray)
+        return (iArray[iArray.length - 1] - iArray[0]) <= 1 
+    }
+    return {root, insert, remove, find, levelOrder, inOrder, preOrder, postOrder, height, depth, isBalanced}
 }
-
-
-
-

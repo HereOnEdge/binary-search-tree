@@ -136,7 +136,21 @@ export const tree = function(arr) {
         return mergeSort(iArray)[iArray.length - 1]
     }
     
-    return {root, insert, remove, find, levelOrder, inOrder, preOrder, postOrder, height}
+    // depth function, returns the number of levels from the root to the given node
+    const depth = function(valueNode, currentNode = this.root, i = -1) {
+        if (valueNode === null) {
+            return 'Node Not Found'
+        }
+        i++
+        if (currentNode === valueNode) {
+            return i
+        } else {
+            return valueNode.data > currentNode.data ? depth(valueNode, currentNode.right, i) :
+            valueNode.data < currentNode.data ? depth(valueNode, currentNode.left, i) : 'node not found'
+        }
+    }
+    
+    return {root, insert, remove, find, levelOrder, inOrder, preOrder, postOrder, height, depth}
 }
 
 

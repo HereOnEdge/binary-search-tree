@@ -26,4 +26,5 @@ console.log(defualtTree.inOrder())
 console.log(defualtTree.preOrder())
 console.log(defualtTree.postOrder())
 console.log(defualtTree.height(defualtTree.root))
+console.log(defualtTree.depth(defualtTree.root.left.left))
 

@@ -156,5 +156,17 @@ export const tree = function(arr) {
         const iArray = mergeSort(this.root.iArray)
         return (iArray[iArray.length - 1] - iArray[0]) <= 1 
     }
-    return {root, insert, remove, find, levelOrder, inOrder, preOrder, postOrder, height, depth, isBalanced}
+
+    // reBalance function, reBalances the tree and console.log the tree
+
+    const reBalance = function() {
+        if(isBalanced.call(this)) {
+            console.log('Tree Is Already Balanced')
+            return 
+        }
+        const sortedTree = inOrder.call(this)
+        this.root = buildTree(sortedTree)
+        prettyPrint(this.root)
+    }
+    return {root, insert, remove, find, levelOrder, inOrder, preOrder, postOrder, height, depth, isBalanced, reBalance}
 }

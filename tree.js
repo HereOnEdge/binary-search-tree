@@ -1,6 +1,7 @@
 import { node , nextBigNode } from "./node.js";
 import { prettyPrint } from "./print.js";
 import { buildTree } from "./buildTree.js";
+import { mergeSort } from "@reza2022/mergesort";
 
 export const tree = function(arr) {
     const root = buildTree(arr)
@@ -75,17 +76,32 @@ export const tree = function(arr) {
         return levelOrder(firstInLine, result, queue)  
     }
 
-    // inOrder function, reads the tree in (left SubTree, node, right subTree) order. returns a sorted array from low to high
-    const inOrder = function(node = this.root, result = [], queue = []) {
+    // inOrder function, reads the tree in (left SubTree, node, right subTree) order. returns a sorted array from low to high and the height of node
+    const inOrder = function(node = this.root, result = [], i = -1, iArray = []) {
+        i++
         if(node.left !== null) {
-            inOrder(node.left, result) 
+            inOrder(node.left, result, i, iArray) 
             result.push(node.data)   
         } else {
             result.push(node.data)
         } 
         if (node.right !== null) {
-            inOrder(node.right, result)
+            inOrder(node.right, result, i, iArray)
         } 
+        // save the level that carrent node is at
+        let isAvailable = false
+        for(let x = 0; x < iArray.length; x++) { // prevent duplicate level values
+            if(i === iArray[x]) {
+                isAvailable = true
+                break
+            } else {
+                continue
+            }
+        }
+        if(isAvailable === false) {
+            iArray.push(i)
+        }
+        node.iArray = iArray
         return result
     }
 
@@ -112,8 +128,15 @@ export const tree = function(arr) {
         result.push(node.data)
         return result
     }
+
+    // height function, returns the number of levels from the given node to the longest leaf
+    const height = function(node) {
+        inOrder(node)
+        const iArray = node.iArray
+        return mergeSort(iArray)[iArray.length - 1]
+    }
     
-    return {root, insert, remove, find, levelOrder, inOrder, preOrder, postOrder}
+    return {root, insert, remove, find, levelOrder, inOrder, preOrder, postOrder, height}
 }
 
 

@@ -16,11 +16,14 @@ const arr = arrBuilder()
 // const arr = [20,12,34,323, 3]
 const defualtTree = tree(arr)
 
+
 prettyPrint(defualtTree.root)
 defualtTree.remove(2)       // removes 2 from the tree if its found and logs the tree to the console
-defualtTree.insert(1)       // inserts 1 to the tree and log the tree to the console
-console.log(defualtTree.find(1).node)  // { data: 1, left: null, right: null }
+defualtTree.insert(10)       // inserts 1 to the tree and log the tree to the console
+console.log(defualtTree.find(10).node)  // { data: 1, left: null, right: null }
 console.log(defualtTree.levelOrder())
 console.log(defualtTree.inOrder())
 console.log(defualtTree.preOrder())
 console.log(defualtTree.postOrder())
+console.log(defualtTree.height(defualtTree.root))
+

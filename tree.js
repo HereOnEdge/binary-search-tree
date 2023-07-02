@@ -168,5 +168,27 @@ export const tree = function(arr) {
         this.root = buildTree(sortedTree)
         prettyPrint(this.root)
     }
-    return {root, insert, remove, find, levelOrder, inOrder, preOrder, postOrder, height, depth, isBalanced, reBalance}
+
+    // find all the nodes that their value includes the given value( best for text searching)
+    const include = function(value, node = this.root, result = {}){
+        if( node === null) {
+            return result;
+        }
+        if(node.data.includes(value)) {
+            result[node.data] = node;
+            console.log(result)
+            if(node.left !== null && node.left.data.includes(value)){
+                result = include(value, node.left, result)
+            }
+            if(node.right !== null && node.right.data.includes(value)){
+                result = include(value, node.right, result)
+            }
+            return result;
+        }
+        return value > node.data ? include(value, node.right, result) :
+                value < node.data ? include(value, node.left, result) : null
+                
+    }
+    
+    return {root, insert, remove, find, levelOrder, inOrder, preOrder, postOrder, height, depth, isBalanced, reBalance, include}
 }
